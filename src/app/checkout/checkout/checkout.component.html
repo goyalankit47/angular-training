@@ -1,0 +1,104 @@
+<!-- Main Body -->
+<div class="container" id="productDetails">
+  <div class="text-center" id="noData" *ngIf="isCartEmpty">
+    <h3><b>Cart is Empty!</b></h3>
+    <button class="btn btn-outline-primary" routerLink="/">
+      Go To Listing
+    </button>
+  </div>
+  <div class="row" id="cart" *ngIf="!isCartEmpty">
+    <div class="col-12 col-md-6 cart-items rounded px-md-0">
+      <div class="d-flex justify-content-between">
+        <h3>Order</h3>
+      </div>
+      <div class="shadow-sm" id="orderList">
+        <div
+          class="prod-item border-bottom d-flex p-2"
+          id="cartItem"
+          *ngFor="let prod of products"
+        >
+          <img
+            class="img-fluid img-thumbnails"
+            onerror="this.src='assets/no-image.png'"
+            [src]="prod.image_src[0]"
+            alt="Image not Available"
+          />
+          <div class="details d-lg-flex justify-content-between w-100">
+            <div class="static-details">
+              <h5 class="px-2 font-weight-bold product-heading">
+                {{prod.vendor}}
+              </h5>
+              <p class="dim-text px-2 product-subhead">{{prod.name}}</p>
+              <p class="px-2 text-nowrap">
+                <b class="product-disprice">${{prod.price}}</b>
+                <span class="dim-text mx-2">
+                  <del class="product-price">${{prod.compare_at_price}}</del>
+                </span>
+                <span style="color: #ff905a;" class="product-off"
+                  >({{productExtraDetails?.[(prod.id).toString()]?.offPercentage}}
+                  % off)</span
+                >
+              </p>
+            </div>
+            <div
+              class="modify-quan d-flex justify-content-end align-items-center w-100"
+            >
+              <div class="text-success mr-2">
+                Quantity
+              </div>
+              <div class="quantity-sec border rounded">
+                <span
+                  class="subtract mx-2 cur-pointer"
+                  (click)="removeItem(prod)"
+                >
+                  -
+                </span>
+                <span class="quant mx-2"
+                  >{{productExtraDetails?.[(prod.id).toString()]?.quantityInCart}}</span
+                >
+                <span class="add mx-2 cur-pointer" (click)="addItem(prod)">
+                  +
+                </span>
+              </div>
+            </div>
+          </div>
+          <button
+            class="btn delete-btn"
+            data-tooltip="tooltip"
+            data-placement="top"
+            title="Remove Item from Cart"
+            (click)="handleDeleteButton(prod)"
+          >
+            <i class="material-icons">delete_outline</i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 payment-details mt-2 mt-md-0">
+      <h3>Payment</h3>
+      <div class="shadow-sm p-4">
+        <div class="d-flex justify-content-between">
+          <b> Total Items </b>
+          <div id="totalItems">{{totalItems}}</div>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-between">
+          <b> Total Amount </b>
+          <b id="totalAmount">${{totalAmount}}</b>
+        </div>
+        <button
+          class="btn btn-primary csv-download w-100 mt-4 p-2"
+          data-tooltip="tooltip"
+          data-placement="top"
+          title="Checkout & Download Order"
+          (click)="downloadOrder()"
+        >
+          Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- dummy anchor tab -->
+<a href="#" download="order.csv" class="d-none" #dummyAnchor></a>

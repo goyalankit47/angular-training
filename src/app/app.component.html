@@ -1,0 +1,79 @@
+<!-- Header -->
+<nav class="navbar navbar-light fixed-bar shadow-sm">
+  <div class="container-fluid px-0">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" [class.active]="router.url === '/'">
+        <a class="nav-link" routerLink="/">Home</a>
+      </li>
+    </ul>
+    <ul
+      class="navbar-nav"
+      data-tooltip="tooltip"
+      data-placement="top"
+      title="Upload Order CSV"
+    >
+      <li class="nav-item" [class.active]="router.url === '/upload'">
+        <a class="nav-link position-relative" routerLink="/upload">
+          <i class="material-icons">upload_file</i>
+        </a>
+      </li>
+    </ul>
+    <ul
+      class="navbar-nav ml-4"
+      data-tooltip="tooltip"
+      data-placement="top"
+      title="Cart"
+    >
+      <li class="nav-item" [class.active]="router.url === '/checkout'">
+        <a class="nav-link position-relative" routerLink="/checkout">
+          <i class="material-icons">shopping_cart</i>
+          <div class="cart-quantity">{{cartItemsCount}}</div>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-4">
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link btn dropdown-toggle p-0"
+          href="#"
+          role="button"
+          id="dropdownMenuLink"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          data-tooltip="tooltip"
+          data-placement="top"
+          title="User Profile"
+        >
+          <i class="material-icons">account_circle</i>
+        </a>
+
+        <div class="dropdown-menu user-drop" aria-labelledby="dropdownMenuLink">
+          <h6 class="dropdown-header" id="userName">{{username}}</h6>
+          <button
+            class="dropdown-item"
+            id="logout"
+            type="button"
+            (click)="logout()"
+          >
+            Logout
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Routes -->
+<router-outlet></router-outlet>
+
+<!-- Footer -->
+<div class="footer text-muted">
+  <hr />
+  <div class="container-fluid row justify-content-between mb-4">
+    <div class="col-12 col-md-6">&copy; 2021; All Rights Reserved.</div>
+    <div class="col-12 col-md-6 mt-2 mt-md-0 text-md-right" id="dateTime">
+      {{dateTime}}
+    </div>
+  </div>
+</div>

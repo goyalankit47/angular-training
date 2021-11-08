@@ -1,0 +1,8 @@
+.form-control {
+  height: calc(1.5em + 0.75rem + 10px) !important;
+}
+
+.error-msg {
+  color: var(--danger);
+  margin-bottom: 1rem;
+}

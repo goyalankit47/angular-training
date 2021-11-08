@@ -1,0 +1,80 @@
+<!-- In case of product id mismatch -->
+<div class="auth-error" *ngIf="notFound">
+  404, Product Not Found! Please check Product ID
+</div>
+
+<!-- Main Body -->
+<div class="container" id="productDetails" *ngIf="product">
+  <div class="page-heading">
+    <div class="col-12 px-md-0">
+      <h2>Product Details</h2>
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-4 product-image rounded px-md-0">
+      <img
+        class="img-fluid rounded border-0 w-100"
+        id="productImg"
+        [src]="product.image_src[0]"
+        onerror="this.src='../assets/no-image.png'"
+        alt="Image not Available"
+      />
+    </div>
+    <div class="col-12 col-md-8 product-details mt-2 mt-md-0">
+      <h5 class="px-2 font-weight-bold" id="productHeading">
+        {{product.vendor}}
+      </h5>
+      <p class="dim-text px-2" id="productSubhead">{{product.name}}</p>
+      <hr />
+      <p class="px-2">
+        <b id="productDisprice">${{product.price}}</b>
+        <span class="dim-text mx-2">
+          <del id="productPrice">${{product.compare_at_price}}</del>
+        </span>
+        <span style="color: #ff905a;" id="productOff"
+          >({{productExtraDetails?.offPercentage}} % off)
+        </span>
+      </p>
+      <div class="cart-sec col-12">
+        <button
+          class="add-to-cart btn btn-outline-primary col-12 col-sm-7 col-md-3 col-lg-4"
+          (click)="addToCart(product)"
+          *ngIf="!productExtraDetails?.quantityInCart"
+        >
+          Add To Cart
+        </button>
+        <div
+          class="modify-quan justify-content-start align-items-center w-100 d-flex"
+          *ngIf="productExtraDetails?.quantityInCart"
+        >
+          <div class="quantity-sec border rounded">
+            <span
+              class="subtract mx-2 cur-pointer"
+              (click)="removeItem(product)"
+            >
+              -
+            </span>
+            <span class="quant mx-2"
+              >{{productExtraDetails?.quantityInCart}}</span
+            >
+            <span
+              class="add mx-2 cur-pointer"
+              (click)="addItem(product)"
+            >
+              +
+            </span>
+          </div>
+          <div class="text-success ml-4">
+            Quantity (In Cart)
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="prod-desc px-2">
+        <h5><b>Description</b></h5>
+        <div class="dim-text" id="prodDesc">{{product.description}}</div>
+      </div>
+    </div>
+  </div>
+</div>

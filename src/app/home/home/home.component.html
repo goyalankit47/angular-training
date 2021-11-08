@@ -1,0 +1,119 @@
+<div class="container" id="productList">
+  <h2 class="list-heading mt-3">Products</h2>
+  <div class="filters-section d-flex align-items-center flex-wrap mt-4">
+    <h5 class="m-0"><b> Filters: </b></h5>
+    <div class="d-flex flex-wrap">
+      <div
+        class="filter-item dim-text border rounded p-2 ml-2 mt-1 cur-pointer"
+        [class.active]="!filterTag"
+        (click)="filterTag = ''"
+        id="allProducts"
+      >
+        All Products
+      </div>
+      <div
+        class="filter-item dim-text border rounded p-2 ml-2 mt-1 cur-pointer"
+        [class.active]="filterTag == 'T-shirt'"
+        (click)="filterTag = 'T-shirt'"
+        id="T-shirt"
+      >
+        T-Shirt
+      </div>
+      <div
+        class="filter-item dim-text border rounded p-2 ml-2 mt-1 cur-pointer"
+        [class.active]="filterTag == 'shirt'"
+        (click)="filterTag = 'shirt'"
+        id="shirt"
+      >
+        Shirt
+      </div>
+      <div
+        class="filter-item dim-text border rounded p-2 ml-2 mt-1 cur-pointer"
+        [class.active]="filterTag == 'Denim'"
+        (click)="filterTag = 'Denim'"
+        id="Denim"
+      >
+        Denim
+      </div>
+      <div
+        class="filter-item dim-text border rounded p-2 ml-2 mt-1 cur-pointer"
+        [class.active]="filterTag == 'jacket'"
+        (click)="filterTag = 'jacket'"
+        id="jacket"
+      >
+        Jacket
+      </div>
+    </div>
+  </div>
+  <div class="row products-container justify-content-center">
+    <div
+      class="col-6 col-md-4 col-xl-3 my-4"
+      *ngFor="let prod of products | filter : 'tag' : filterTag"
+      routerLink="details"
+      [queryParams]="{product_id: prod.id}"
+    >
+      <div class="cur-pointer h-100 position-relative overflow-hidden">
+        <img
+          class="img-fluid rounded border-0 w-100"
+          onerror="this.src='assets/no-image.png'"
+          [src]="prod.image_src[0]"
+          alt="Image not Available"
+        />
+
+        <div
+          class="in-cart"
+          *ngIf="productExtraDetails?.[(prod.id).toString()]?.quantityInCart"
+        >
+          In Cart
+        </div>
+
+        <div class="cart-sec">
+          <button
+            class="add-to-cart btn btn-outline-primary w-100"
+            (click)="addToCart(prod, $event)"
+            *ngIf="!productExtraDetails?.[(prod.id).toString()]?.quantityInCart"
+          >
+            Add To Cart
+          </button>
+          <div
+            class="modify-quan justify-content-between align-items-center d-flex w-100"
+            *ngIf="productExtraDetails?.[(prod.id).toString()]?.quantityInCart"
+          >
+            <div
+              class="quantity-sec border rounded"
+              (click)="$event.stopImmediatePropagation()"
+            >
+              <span
+                class="subtract mx-1 mx-md-2"
+                (click)="removeItem(prod, $event)"
+              >
+                -
+              </span>
+              <span class="quant mx-1 mx-md-2"
+                >{{productExtraDetails?.[(prod.id).toString()]?.quantityInCart}}</span
+              >
+              <span class="add mx-1 mx-md-2" (click)="addItem(prod, $event)">
+                +
+              </span>
+            </div>
+            <div class="text-success ml-2">
+              Quantity
+            </div>
+          </div>
+        </div>
+        <h5 class="px-2 my-2 product-heading">{{prod.vendor}}</h5>
+        <p class="dim-text px-2 product-subhead">{{prod.name}}</p>
+        <p class="px-2">
+          <b class="product-price">${{prod.price}}</b>
+          <span class="dim-text mx-2">
+            <del class="product-disprice">${{prod.compare_at_price}}</del>
+          </span>
+          <span style="color: #ff905a;" class="product-off mx-2"
+            >({{productExtraDetails?.[(prod.id).toString()]?.offPercentage}} %
+            off)</span
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

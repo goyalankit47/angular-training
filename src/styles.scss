@@ -1,0 +1,122 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  user-select: none;
+}
+
+.cur-pointer {
+  cursor: pointer;
+}
+
+.dim-text {
+  color: #535665;
+}
+
+.fixed-bar {
+  position: fixed !important;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  background: #fff;
+  border-bottom: 1px solid #dedede;
+  font-size: 1.2rem;
+}
+
+.cart-quantity {
+  position: absolute;
+  top: -2px;
+  font-size: 12px;
+  right: -8px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0px 5px;
+  color: white;
+}
+
+.cart-sec {
+  margin-top: -48px;
+  background: #fff;
+  padding: 5px;
+  position: absolute;
+  width: 100%;
+}
+
+.modify-quan {
+  height: 38px;
+}
+
+.in-cart {
+  position: absolute;
+  top: 5%;
+  left: -34%;
+  width: 100%;
+  transform: rotate(-45deg);
+  background: white;
+  color: var(--success);
+  text-align: center;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+}
+
+.filter-item.active {
+  background-color: var(--info);
+  color: #fff;
+}
+
+.page-heading {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.user-drop.dropdown-menu {
+  position: absolute !important;
+  float: left !important;
+  left: -8rem;
+}
+
+.blur {
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(1px);
+}
+
+.modal-backdrop {
+  backdrop-filter: blur(3px);
+  background-color: #01223770 !important;
+  &.show {
+    opacity: 1 !important;
+  }
+}
+
+.toast-top-right {
+  top: 65px !important;
+}
+
+.input-group {
+  .input-group-prepend {
+    width: 10%;
+    .input-group-text {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

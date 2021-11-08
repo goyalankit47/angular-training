@@ -1,0 +1,19 @@
+#uploadContainer {
+  margin-top: 85px;
+  padding-bottom: 80px;
+}
+
+.error-div {
+  color: var(--danger);
+}
+
+@media (min-width: 576px) {
+  th {
+    position: sticky;
+    top: 65px;
+  }
+}
+
+.input-group .input-group-prepend {
+  width: 20% !important;
+}

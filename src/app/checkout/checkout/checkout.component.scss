@@ -1,0 +1,25 @@
+#productDetails {
+  margin-top: 85px;
+  padding-bottom: 80px;
+}
+
+.prod-item {
+  position: relative;
+}
+
+.cart-items img {
+  height: 10rem;
+}
+
+.delete-btn {
+  @media (min-width: 992px) {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  @media (max-width: 991px) {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
