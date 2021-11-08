@@ -76,7 +76,7 @@ export class UploadComponent implements OnInit {
       this.resetTableVars();
 
       this.papa.parse(file, {
-        skipEmptyLines: true,
+        skipEmptyLines: 'greedy',
         dynamicTyping: true, // to preserve data type of columns
         complete: this.processCSVParse.bind(this),
         // before: (_file: any, inputElement: any) => {
